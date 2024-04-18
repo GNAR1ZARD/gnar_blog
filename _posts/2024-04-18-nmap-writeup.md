@@ -10,16 +10,35 @@ Nmap is a powerful network scanning tool that uses various switches to customize
 
 ### Switch Descriptions
 
--Pn: Skips the host discovery phase, assuming the target is online. This is useful for targets that don't respond to ping requests, effectively avoiding unnecessary preliminary checks.
--v: Increases the verbosity level of Nmap's output to provide more detailed information about the scanning process.
--vv: Further increases the verbosity to an even more detailed "very verbose" level, giving granular details about the scan's progress.
--A: Activates a comprehensive set of scanning features including OS detection (-O), version detection (-sV), script scanning, and traceroute, aiming to provide an in-depth analysis of the target.
--T: Specifies the timing template (from 0 for "paranoid" to 5 for "insane"), controlling the speed and stealth of the scan by adjusting how aggressively packets are sent.
--p: Directs Nmap to scan specific ports or ranges of ports, allowing for targeted scanning based on the input format (e.g., -p 1-1000 for a range or -p 80,443,8080 for specific ports).
--oA: Saves the scan results in all major output formats (normal, XML, and grepable) at once, providing a comprehensive set of files for analysis and reporting.
--oN: Saves the scan results in a normal, human-readable format.
--oG: Saves the results in a "grepable" format, which is useful for easy parsing and analysis via text processing tools.
---script: Activates specific Nmap Scripting Engine (NSE) scripts or categories of scripts (e.g., --script=vuln to run all vulnerability scanning scripts).
+- **-Pn**:
+  - Skips the host discovery phase, assuming the target is online. Useful for targets that don't respond to ping requests, avoiding unnecessary preliminary checks.
+
+- **-v**:
+  - Increases verbosity level of Nmap's output to provide more detailed information about the scanning process.
+
+- **-vv**:
+  - Further increases verbosity to a "very verbose" level, giving granular details about the scan's progress.
+
+- **-A**:
+  - Activates comprehensive scanning features including OS detection (-O), version detection (-sV), script scanning, and traceroute, providing in-depth analysis of the target.
+
+- **-T**:
+  - Specifies timing template (from 0 for "paranoid" to 5 for "insane"), controlling speed and stealth of the scan by adjusting how aggressively packets are sent.
+
+- **-p**:
+  - Directs Nmap to scan specific ports or ranges of ports, allowing targeted scanning based on input format (e.g., -p 1-1000 for a range or -p 80,443,8080 for specific ports).
+
+- **-oA**:
+  - Saves scan results in all major output formats (normal, XML, and grepable) at once, providing a comprehensive set of files for analysis and reporting.
+
+- **-oN**:
+  - Saves scan results in a normal, human-readable format.
+
+- **-oG**:
+  - Saves results in a "grepable" format, useful for easy parsing and analysis via text processing tools.
+
+- **--script**:
+  - Activates specific Nmap Scripting Engine (NSE) scripts or categories of scripts (e.g., --script=vuln to run all vulnerability scanning scripts).
 
 ### Example Command
 
