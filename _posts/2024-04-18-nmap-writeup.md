@@ -1,11 +1,8 @@
 ---
 layout: post
-title: "NMAP Write-up"
+title: "Network Security with Nmap: A Comprehensive Guide"
 date: 2024-04-18
-categories: security networking
 ---
-
-# Nmap Writeup
 
 ## Nmap Switches
 
