@@ -87,17 +87,13 @@ Understanding the nuances of these scan types allows you to tailor your approach
 
 ## TCP Connect Scans
 
-To enhance your understanding of TCP Connect scans (`-sT`) in Nmap, it's useful to have a solid grasp of the TCP/IP three-way handshake, which is pivotal in network communications, particularly for establishing a connection over TCP.
+The TCP Connect scan is the default TCP scan method used by Nmap when executed without root privileges. This scan type completes the full TCP three-way handshake process with each target port, directly interacting with the TCP/IP stack of the operating system.
 
 #### Command Usage
 
 ```bash
 nmap -sT <target>
 ```
-
-#### Overview
-
-The TCP Connect scan is the default TCP scan method used by Nmap when executed without root privileges. This scan type completes the full TCP three-way handshake process with each target port, directly interacting with the TCP/IP stack of the operating system.
 
 #### Three-Way Handshake
 
@@ -127,15 +123,13 @@ This configuration complicates the accurate assessment of port status, as it can
 
 ## SYN Scans
 
+SYN scans, indicated by `-sS`, are a common method for exploring the TCP ports of a target. These scans are distinctive from full TCP scans, being sometimes referred to as "Half-open" or "Stealth" scans.
+
 #### Command for SYN Scan
 
 ```bash
 nmap -sS <target>
 ```
-
-#### Overview
-
-SYN scans, indicated by `-sS`, are a common method for exploring the TCP ports of a target. These scans are distinctive from full TCP scans, being sometimes referred to as "Half-open" or "Stealth" scans.
 
 #### How SYN Scans Work
 
@@ -173,7 +167,7 @@ Despite some limitations, the advantages of using SYN scans typically outweigh t
 
 ## UDP Scans
 
-### UDP Scan Command
+#### UDP Scan Command
 
 ```bash
 nmap -sU <target>
@@ -183,7 +177,7 @@ Scanning UDP ports, which are stateless, with Nmap's UDP scan option.
 
 ## NULL, FIN, and Xmas Scans
 
-### NULL, FIN, and Xmas Scan Commands
+#### NULL, FIN, and Xmas Scan Commands
 
 - NULL Scan:
 
@@ -207,15 +201,13 @@ These scans can be used to stealthily scan a target without establishing a full 
 
 ## ICMP Network Scanning
 
+In network security assessments, especially in black box settings where the internal structure of a network is unknown, it's crucial to first identify active hosts. This process, known as a "ping sweep," involves scanning IP addresses to detect which ones are online.
+
 #### Command for ICMP Echo Scan
 
 ```bash
 nmap -sn <target>
 ```
-
-#### Overview
-
-In network security assessments, especially in black box settings where the internal structure of a network is unknown, it's crucial to first identify active hosts. This process, known as a "ping sweep," involves scanning IP addresses to detect which ones are online.
 
 #### How ICMP Echo Scans Work
 
@@ -250,9 +242,7 @@ While ICMP echo scans provide a foundational overview of network structure by id
 
 An overview of Nmap Scripting Engine (NSE) which allows users to write (or use existing) scripts to automate a wide variety of networking tasks.
 
-## Working with the NSE
-
-### Running Scripts with Nmap
+#### Running Scripts with Nmap
 
 ```bash
 nmap --script=<script-name> <target>
@@ -260,9 +250,7 @@ nmap --script=<script-name> <target>
 
 Examples of NSE scripts usage to perform advanced scanning tasks.
 
-## Searching for Scripts
-
-### Search for NSE Scripts
+#### Search for NSE Scripts
 
 ```bash
 ls /usr/share/nmap/scripts | grep <search-term>
@@ -272,7 +260,7 @@ Locate scripts by name or functionality, and how to use them in scans.
 
 ## Firewall Evasion
 
-### Firewall Evasion Techniques
+#### Firewall Evasion Techniques
 
 - Packet Fragmentation:
 
