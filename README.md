@@ -1,5 +1,3 @@
-# GNAR Blog
-
 Welcome to the GNAR Blog – a collection of tech write-ups, guides, and reflections shared with the community. This repository hosts the markdown files that are automatically turned into blog posts via GitHub Pages.
 
 ## About
