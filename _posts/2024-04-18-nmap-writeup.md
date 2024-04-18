@@ -1,3 +1,10 @@
+---
+layout: post
+title: "NMAP Write-up"
+date: 2024-04-18
+categories: security networking
+---
+
 # Nmap Writeup
 
 ## Nmap Switches
