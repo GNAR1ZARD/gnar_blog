@@ -281,3 +281,7 @@ Locate scripts by name or functionality, and how to use them in scans.
   ```
 
 Techniques to evade firewalls and intrusion detection systems during scanning.
+
+### Acknowledgments
+
+This guide was inspired by the TryHackMe module on further exploring Nmap, created by DarkStar7471, MuirlandOracle, and SecurityNomad, available at [https://tryhackme.com/r/room/furthernmap](https://tryhackme.com/r/room/furthernmap).
