@@ -581,3 +581,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
    - Use John the Ripper with an appropriate wordlist to attempt to uncover the passphrase.
 
 Cracking SSH key passwords is a testament to John the Ripper's versatility, providing crucial capabilities for security testing and ethical hacking. This technique is essential for scenarios where key-based SSH access needs to be recovered or secured against potential passphrase vulnerabilities.
+
+### Acknowledgments
+
+This guide was inspired by the TryHackMe module created by PoloMints, available at [https://tryhackme.com/r/room/johntheripper0](https://tryhackme.com/r/room/johntheripper0).
