@@ -43,9 +43,9 @@ Aircrack-ng is versatile for both beginners and advanced users. This section del
 #### Monitor Mode
 
 - **Checking for Interfering Processes**:
-  - Before enabling monitor mode, identify any processes that could interfere with the operation of your wireless card. Use the command:
+  - Before enabling monitor mode, identify and kill any processes that could interfere with the operation of your wireless card. Use the command:
     - `airmon-ng check kill`
-  - This ensures a stable environment by stopping any services that could interfere with the capture process.
+      - 'NetworkManager restart' after check kill to restart NAT/Wifi
 
 - **Enabling Monitor Mode**:
   - `airmon-ng start wlan0`
