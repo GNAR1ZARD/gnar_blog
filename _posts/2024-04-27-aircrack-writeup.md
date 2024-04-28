@@ -79,7 +79,7 @@ To focus on a specific network and capture data related to it, you can specify t
 
 - **Sorting Captured Data**:
   - During a capture session, you can press the **s** key to bring up the sort interface, allowing you to organize the displayed networks by power, beacon count, or any other available metric.
-  - Press **Enter** after selecting your sorting preference to update the display order. This feature helps in pinpointing networks with stronger signals or more frequent activity, which might be more susceptible to deauthentication attacks or have more data traffic to analyze.
+  - Press **Enter** after selecting your sorting preference to update the display order. This feature helps in pinpointing networks with stronger signals or more frequent activity.
 
 - **Optimize Location**: Physical proximity to the target can greatly improve the quality of the capture. Position yourself within a reasonable range of the access point to capture more packets.
 
