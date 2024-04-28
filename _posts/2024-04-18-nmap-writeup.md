@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Network Security with Nmap: A Comprehensive Guide"
+title: "Network Security with Nmap"
 date: 2024-04-18
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hash Cracking with John: A Comprehensive Guide"
+title: "Hash Cracking with John"
 date: 2024-04-21
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Wifi Cracking with Aircrack: A Comprehensive Guide"
+title: "Wifi Cracking with Aircrack"
 date: 2024-04-27
 ---
 

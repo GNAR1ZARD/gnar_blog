@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ARP Spoofing with Arpspoof: A Comprehensive Guide"
+title: "ARP Spoofing with Arpspoof"
 date: 2024-04-27
 ---
 
