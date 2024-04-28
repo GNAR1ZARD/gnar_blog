@@ -80,10 +80,10 @@ To effectively use Arpspoof in network security assessments, consider the networ
    - Start the ARP spoofing process with `arpspoof`, specifying your network interface, target device, and gateway.
 
 3. **Capture Traffic**:
-   - Begin packet capture using tcpdump or a similar tool to record the traffic now routed through your machine.
+   - Begin packet capture using wireshark or a similar tool to record the traffic now routed through your machine.
 
 4. **Analyze Traffic**:
-   - Use packet analysis tools to inspect the captured data for sensitive information or signs of further vulnerabilities.
+   - Use tools like wireshark for packet analysis to inspect the captured data for sensitive information or signs of further vulnerabilities.
 
 ### Disclaimer
 
