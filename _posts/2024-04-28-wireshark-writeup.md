@@ -394,6 +394,10 @@ By decrypting and analyzing HTTPS traffic, network administrators and security a
 
 While HTTPS adds a layer of complexity to traffic analysis, understanding its underlying processes and being able to decrypt and examine the content can provide invaluable insights into network security and user behavior. Tools like Wireshark, equipped with the right keys and configuration, make this detailed inspection possible, aiding in everything from compliance checks to advanced threat detection.
 
+### Acknowledgments
+
 The structure of this guide was inspired by the module created by TryHackMe, available at [https://tryhackme.com/r/room/wireshark](https://tryhackme.com/r/room/wireshark).
+
+### Disclaimer
 
 **Legal Considerations:** Always ensure you have permission to perform packet analysis on the network you are targeting to avoid violating legal or ethical boundaries.
