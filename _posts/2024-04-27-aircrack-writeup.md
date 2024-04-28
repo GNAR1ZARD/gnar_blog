@@ -96,6 +96,10 @@ Once the handshake is captured, use `aircrack-ng` to crack the password:
 
 - **Basic Command**:
   - `aircrack-ng -w [path to wordlist] output-01.cap`
+    - Find the file:
+      - `/usr/share/wordlists`
+    - Decompress the file:
+      - `gunzip rockyou.txt.gz`
 
 This command uses a wordlist to perform a dictionary attack against the handshake file captured by `airodump-ng`.
 
@@ -105,7 +109,7 @@ For more sophisticated approaches, consider:
 
 - **Deauthentication Attack**:
   - Forces devices to reconnect, capturing new handshakes.
-  - `aireplay-ng --deauth 5 -a [target BSSID] wlan0mon`
+  - `aireplay-ng --deauth 5 -a [routers MAC/BSSID] -c [client's MAC/STATION] wlan0`
 - **Using GPU Acceleration**:
   - Convert the capture to a hashcat format for faster cracking with GPUs.
   - `aircrack-ng -J output hashcat_output.hccapx`
@@ -146,7 +150,7 @@ Cracking WPA/WPA2 passwords with Aircrack-ng is a powerful method in a security 
 
 5. **Initiate Deauthentication Attack**:
    - Use `aireplay-ng` to send deauthentication packets to the target, prompting devices connected to the network to reconnect. This forces the network to generate new 4-way handshakes, which are crucial for cracking WPA/WPA2 passwords.
-     - Command: `aireplay-ng --deauth 5 -a [target BSSID] wlan0mon`
+     - Command: `aireplay-ng --deauth 5 -a [routers MAC/BSSID] -c [client's MAC/STATION] wlan0`
      - This attack can help you capture the 4-way handshake if it was not captured during the initial targeted sniffing.
 
 ### Disclaimer
