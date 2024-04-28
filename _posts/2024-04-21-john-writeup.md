@@ -585,3 +585,7 @@ Cracking SSH key passwords is a testament to John the Ripper's versatility, prov
 ### Acknowledgments
 
 The structure of this guide was inspired by the TryHackMe module created by PoloMints, available at [https://tryhackme.com/r/room/johntheripper0](https://tryhackme.com/r/room/johntheripper0).
+
+### Disclaimer
+
+**Legal Considerations:** Always ensure you have permission to perform hash/password cracking on the network you are targeting to avoid violating legal or ethical boundaries.
