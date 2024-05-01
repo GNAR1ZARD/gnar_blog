@@ -4,6 +4,50 @@ title: "Network Scanning with Nmap"
 date: 2024-04-18
 ---
 
+## Active and Passive Network Scanning
+
+Network scanning can be broadly categorized into two types: active and passive. Each type has its own methodologies and tools, suited for different scenarios and objectives. Understanding both types allows a security professional to choose the appropriate approach based on the environment and the goal of the assessment.
+
+### Passive Scanning
+
+Passive scanning involves monitoring network traffic without sending any data to the network. This method is non-intrusive and stealthy, as it does not alert the network or its devices to the presence of the scanner.
+
+- **Tools**: One of the most popular tools for passive scanning is `airodump-ng`. This tool is part of the Aircrack-ng suite and is commonly used for capturing raw 802.11 frames in monitor mode. It's particularly useful for gathering information about Wi-Fi networks without joining them.
+  
+- **Usage**: The basic command to start capturing traffic with `airodump-ng` is:
+
+  ```bash
+  airodump-ng wlan0
+  ```
+
+  Here, `wlan0` is the name of your wireless network interface in monitor mode. This command captures all visible Wi-Fi data packets, which can then be analyzed to gather information about the networks and devices in range.
+
+- **Advantages**: Passive scanning is highly discreet, making it ideal for initial reconnaissance where you wish to avoid detection. It allows the collection of data such as SSIDs, MAC addresses, and encryption types, without interacting with the network directly.
+
+- **Limitations**: Since passive scanning only captures ongoing traffic, it may not provide a complete picture of the network if the traffic is sparse or encrypted. Additionally, some devices or networks may not be detectable if they are not actively transmitting data.
+
+### Active Scanning
+
+In contrast, active scanning involves sending packets or requests to the network and analyzing the responses received. This approach is more direct and often provides more comprehensive data about the network.
+
+- **Tools**: `Nmap` is one of the most versatile active scanning tools available, offering a wide range of scanning techniques as detailed earlier. It can discover hosts, services, operating systems, and network devices along with their configurations and vulnerabilities.
+
+- **Usage**: A simple example of an active scan using Nmap to discover live hosts on a network is:
+
+  ```bash
+  nmap -sn 192.168.1.0/24
+  ```
+
+  This command performs a ping sweep to identify which hosts are up without scanning ports.
+
+- **Advantages**: Active scanning can quickly provide detailed information about the network structure, open ports, running services, and potential vulnerabilities. It is more likely to discover all active devices and services on a network.
+
+- **Limitations**: Because active scanning sends traffic to the network, it is more easily detected by intrusion detection systems, firewalls, or network monitoring tools. This can lead to potential blocks or security alerts.
+
+### Integrating Scanning Types
+
+For thorough network reconnaissance, combining passive and active scanning techniques can be highly effective. Begin with passive scanning to observe the network without raising alarms, then follow up with active scanning for a deeper dive into the network's architecture and vulnerabilities. This phased approach helps in maintaining stealth while gradually escalating the intensity of the scan according to the sensitivity and security posture of the network.
+
 ## Nmap Switches
 
 Nmap is a powerful network scanning tool that uses various switches to customize its behavior. Below are some commonly used switches and their functionalities:

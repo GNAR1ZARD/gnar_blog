@@ -394,10 +394,60 @@ By decrypting and analyzing HTTPS traffic, network administrators and security a
 
 While HTTPS adds a layer of complexity to traffic analysis, understanding its underlying processes and being able to decrypt and examine the content can provide invaluable insights into network security and user behavior. Tools like Wireshark, equipped with the right keys and configuration, make this detailed inspection possible, aiding in everything from compliance checks to advanced threat detection.
 
-### Acknowledgments
+## Appendix
+
+### Wireshark --Deauthentication
+
+Using Wireshark to analyze network traffic and verify the success of a deauthentication attack, as well as the subsequent capture of a WPA 4-way handshake, can be effectively done by following these steps:
+
+### 1. **Open the .cap File**
+
+- Start Wireshark and open your `.cap` file that you generated during your test.
+
+### 2. **Filter for Deauthentication Packets**
+
+- To see if the deauthentication attack was successful, use the filter:
+
+     ```
+     wlan.fc.type_subtype == 0x0c
+     ```
+
+     This filter shows deauthentication frames. You should see packets with the destination address set to the client’s MAC address you targeted (if you targeted a specific client), or a broadcast address for general deauth.
+
+### 3. **Check for Reconnection Attempts**
+
+- After filtering for deauthentication packets, remove the filter and look around the same timeframe for EAPOL packets which are used in the WPA 4-way handshake. Use the filter:
+
+     ```
+     eapol
+     ```
+
+     This will display all EAPOL frames, which are involved in the handshake process.
+
+### 4. **Analyze the 4-Way Handshake**
+
+- To confirm a complete 4-way handshake, ensure you capture four EAPOL packets between the client and the AP:
+  - **Message 1**: from AP to client (contains the ANonce)
+  - **Message 2**: from client to AP (contains the SNonce)
+  - **Message 3**: from AP to client (confirms the temporal key)
+  - **Message 4**: from client to AP (acknowledgment)
+- The filter `eapol` should reveal these packets if they were captured. The Info column in Wireshark will detail which part of the handshake each packet belongs to.
+
+### 5. **Verify the Timing**
+
+- Examine the timestamps on the deauthentication packets and the EAPOL messages. There should be a very quick succession of these events if the deauthentication caused the client to reconnect. This timing is crucial to determine if the deauthentication led directly to the handshake capture.
+
+### 6. **Additional Checks**
+
+- **Signal Strength**: Check the radio information, if available, to assess signal strength which might affect packet capture efficacy.
+- **Packet Loss**: Consider if there might have been packet loss, which could result in missing parts of the handshake.
+
+Using these steps in Wireshark will allow you to visualize the flow of packets and ascertain both the success of your deauthentication attack and whether it resulted in capturing a new 4-way handshake.
+
+## Acknowledgments
 
 The structure of this guide was inspired by the module created by TryHackMe, available at [https://tryhackme.com/r/room/wireshark](https://tryhackme.com/r/room/wireshark).
 
-### Disclaimer
+## Disclaimer
 
 **Legal Considerations:** Always ensure you have permission to perform packet analysis on the network you are targeting to avoid violating legal or ethical boundaries.
