@@ -4,7 +4,7 @@ title: "Network Design - Hybrid Architecture"
 date: 2024-05-22
 ---
 
-## Network Design Overview - Hybrid Architecture
+## Network Design Overview
 
 Creating a robust enterprise network involves strategic planning, careful selection of hardware and software, and meticulous implementation. This hybrid architecture showcases the development of an enterprise network using high-quality hardware, a new network configuration, and optimized departmental segmentation.
 
