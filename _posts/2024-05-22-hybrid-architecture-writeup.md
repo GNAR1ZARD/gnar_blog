@@ -36,7 +36,7 @@ The network is designed for high performance and reliability, with a focus on en
 
 #### Network Diagram
 
-The following diagram illustrates the updated network configuration:
+The following diagram illustrates the network configuration:
 
 ```bash
                                  Internet
