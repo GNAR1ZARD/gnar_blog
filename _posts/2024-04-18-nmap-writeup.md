@@ -282,6 +282,44 @@ The `-sn` option in Nmap does the following:
 
 While ICMP echo scans provide a foundational overview of network structure by identifying live hosts, they should be supplemented with other scanning techniques for a comprehensive security audit. This method is particularly useful for initial reconnaissance in environments where detailed intelligence on the network is limited.
 
+## ARP Scans
+
+ARP (Address Resolution Protocol) scans are used to discover active hosts on a local network. This type of scan is effective in local area networks (LANs) because it relies on the ARP protocol, which is used for mapping IP network addresses to the hardware (MAC) addresses used by a data link protocol.
+
+### Command for ARP Scan
+
+To perform an ARP scan using Nmap, you can use the following command:
+
+```bash
+sudo nmap -PR -sn MACHINE_IP/24
+```
+
+### How ARP Scans Work
+
+- **ARP Requests**: Nmap sends ARP requests to each IP address in the specified range. ARP requests ask for the MAC address corresponding to an IP address.
+- **ARP Replies**: Active devices on the network respond with their MAC addresses, allowing Nmap to identify which IP addresses are currently in use.
+
+### Advantages of ARP Scans
+
+- **Accuracy**: ARP scans are highly accurate for local networks because they directly query devices at the data link layer, avoiding issues like IP filtering.
+- **Speed**: These scans are very fast, as ARP requests and replies are processed quickly by most devices.
+- **Stealth**: ARP requests are a normal part of network traffic, making ARP scans relatively stealthy and less likely to be flagged by intrusion detection systems.
+
+### Usage Example
+
+To perform an ARP scan on the 192.168.1.0/24 network, the command would be:
+
+```bash
+sudo nmap -PR -sn 192.168.1.0/24
+```
+
+This command will identify all active devices on the specified subnet by sending ARP requests and listening for ARP replies.
+
+### Considerations
+
+- **Local Network Only**: ARP scans are only applicable for local networks. For remote networks, other types of scans, such as ICMP or TCP, must be used.
+- **Permissions**: ARP scanning typically requires root or administrative privileges, as it involves low-level network interactions.
+
 ## NSE Scripts Overview
 
 An overview of Nmap Scripting Engine (NSE) which allows users to write (or use existing) scripts to automate a wide variety of networking tasks.
