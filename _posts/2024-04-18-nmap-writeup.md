@@ -387,10 +387,6 @@ nmap -sC <target>
 
 Techniques to evade firewalls and intrusion detection systems during scanning.
 
-### Acknowledgments
-
-The structure of this guide was inspired by the TryHackMe module on further exploring Nmap, created by DarkStar7471, MuirlandOracle, and SecurityNomad, available at [https://tryhackme.com/r/room/furthernmap](https://tryhackme.com/r/room/furthernmap).
-
 ### Disclaimer
 
 **Legal Considerations:** Always ensure you have permission to perform enumeration on the network you are targeting to avoid violating legal or ethical boundaries.
