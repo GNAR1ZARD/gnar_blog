@@ -50,12 +50,36 @@ For thorough network reconnaissance, combining passive and active scanning techn
 
 ## Nmap Switches
 
-Nmap is a powerful network scanning tool that uses various switches to customize its behavior. Below are some commonly used switches and their functionalities:
+Nmap is a powerful network scanning tool that uses various switches (options) to customize its behavior. Below are some commonly used switches and their functionalities:
 
 #### Switch Descriptions
 
+- **-A**:
+  - Activates comprehensive scanning features including OS detection (-O), version detection (-sV), script scanning, and traceroute, providing in-depth analysis of the target.
+
+- **-F**:
+  - Performs a fast scan by scanning the top 100 most common ports instead of the default top 1000 ports, significantly reducing scan time while still targeting commonly used ports.
+
+- **-oA**:
+  - Saves scan results in all major output formats (normal, XML, and grepable) at once, providing a comprehensive set of files for analysis and reporting.
+
+- **-oG**:
+  - Saves results in a "grepable" format, useful for easy parsing and analysis via text processing tools.
+
+- **-oN**:
+  - Saves scan results in a normal, human-readable format.
+
+- **-p**:
+  - Directs Nmap to scan specific ports or ranges of ports, allowing targeted scanning based on input format (e.g., -p 1-1000 for a range or -p 80,443,8080 for specific ports).
+
 - **-Pn**:
   - Skips the host discovery phase, assuming the target is online. Useful for targets that don't respond to ping requests, avoiding unnecessary preliminary checks.
+
+- **-sC**:
+  - Runs a set of default Nmap Scripting Engine (NSE) scripts, which are designed to provide additional information about the target, often focusing on services associated with the open ports detected during the scan.
+
+- **-T**:
+  - Specifies timing template (from 0 for "paranoid" to 5 for "insane"), controlling speed and stealth of the scan by adjusting how aggressively packets are sent.
 
 - **-v**:
   - Increases verbosity level of Nmap's output to provide more detailed information about the scanning process.
@@ -63,38 +87,21 @@ Nmap is a powerful network scanning tool that uses various switches to customize
 - **-vv**:
   - Further increases verbosity to a "very verbose" level, giving granular details about the scan's progress.
 
-- **-A**:
-  - Activates comprehensive scanning features including OS detection (-O), version detection (-sV), script scanning, and traceroute, providing in-depth analysis of the target.
+#### Example Commands
 
-- **-T**:
-  - Specifies timing template (from 0 for "paranoid" to 5 for "insane"), controlling speed and stealth of the scan by adjusting how aggressively packets are sent.
-
-- **-p**:
-  - Directs Nmap to scan specific ports or ranges of ports, allowing targeted scanning based on input format (e.g., -p 1-1000 for a range or -p 80,443,8080 for specific ports).
-
-- **-oA**:
-  - Saves scan results in all major output formats (normal, XML, and grepable) at once, providing a comprehensive set of files for analysis and reporting.
-
-- **-oN**:
-  - Saves scan results in a normal, human-readable format.
-
-- **-oG**:
-  - Saves results in a "grepable" format, useful for easy parsing and analysis via text processing tools.
-
-- **--script**:
-  - Activates specific Nmap Scripting Engine (NSE) scripts or categories of scripts (e.g., --script=vuln to run all vulnerability scanning scripts).
-
-#### Example Command
-
-To run an Nmap scan with these options, you can structure the command as follows:
+Switches (options) can be placed in any order in the command line.
 
 ```bash
-nmap -vv -A -T4 -Pn -p 1-65535 <target>
+nmap -vv -A -T3 -Pn -p- <target>
 ```
 
-This command configuration will start a very verbose scan with advanced features on a target that doesn't respond to ping requests, using a fairly aggressive timing, and scanning all possible ports.
+This command configuration will start a very verbose scan with advanced features on a target that doesn't respond to ping requests, using a moderate timing, and scanning all possible ports.
 
-Flags or switches can be placed in any order in the command line.
+```bash
+nmap -A -F -T5 --min-parallelism 10 <target>
+```
+
+This configuration prioritizes speed and comprehensiveness, making it suitable for situations where you need detailed information quickly and are less concerned about being stealthy.
 
 ## Scan Types Overview
 
@@ -330,8 +337,6 @@ An overview of Nmap Scripting Engine (NSE) which allows users to write (or use e
 nmap --script=<script-name> <target>
 ```
 
-Examples of NSE scripts usage to perform advanced scanning tasks.
-
 #### Search for NSE Scripts
 
 ```bash
@@ -339,6 +344,24 @@ ls /usr/share/nmap/scripts | grep <search-term>
 ```
 
 Locate scripts by name or functionality, and how to use them in scans.
+
+### How `-sC` Works
+
+```bash
+nmap -sC <target>
+```
+
+1. **Initial Scan**:
+   - Nmap first performs a basic scan to identify which ports are open on the target host.
+
+2. **Script Selection**:
+   - Based on the open ports and the services detected running on those ports, Nmap selects and runs relevant default scripts to gather more information.
+   - These default scripts are categorized under safe and useful scripts that provide further insights without being intrusive.
+
+### Benefits of Running `-sC`
+
+- **Comprehensive Information**: By running default scripts, Nmap can provide a more comprehensive picture of the target’s network configuration and potential vulnerabilities.
+- **Automated Process**: You don’t need to manually specify each script; `-sC` automatically selects and runs the relevant ones based on the services detected.
 
 ## Firewall Evasion
 
@@ -378,59 +401,59 @@ Below is a comprehensive list of Nmap options and their descriptions.
 
 | Argument                         | Description                                                              |
 |----------------------------------|--------------------------------------------------------------------------|
-| `-v` / `-vv`                     | Increase verbosity / Very verbose output                                 |
+| `-6`                             | Enable IPv6 scanning                                                    |
+| `-A`                             | Enable OS detection, version detection, script scanning, and traceroute  |
+| `-D <decoy1,decoy2,...>`         | Use decoys                                                              |
+| `-e <iface>`                     | Use specified interface                                                 |
+| `-F`                             | Fast scan                                                               |
+| `-f`                             | Fragment packets                                                        |
+| `-g <port>` / `--source-port <port>` | Use specified source port                                              |
+| `-O`                             | Enable OS detection                                                     |
+| `-oA <basename>`                 | Output in all formats (normal, XML, grepable) with a common basename     |
+| `-oG <file>`                     | Output scan results in a grepable format                                 |
 | `-oN <file>`                     | Output scan results to a normal file                                     |
 | `-oX <file>`                     | Output scan results to an XML file                                       |
-| `-oG <file>`                     | Output scan results in a grepable format                                 |
-| `-oA <basename>`                 | Output in all formats (normal, XML, grepable) with a common basename     |
-| `-sT`                            | TCP connect scan                                                        |
-| `-sS`                            | SYN scan                                                                |
-| `-sU`                            | UDP scan                                                                |
-| `-sN`                            | NULL scan                                                               |
-| `-sF`                            | FIN scan                                                                |
-| `-sX`                            | Xmas scan                                                               |
-| `-sP` / `-sn`                    | Ping scan                                                               |
-| `-sA`                            | ACK scan                                                                |
-| `-sW`                            | Window scan                                                             |
-| `-sM`                            | Maimon scan                                                             |
-| `-p <port ranges>`               | Specify ports to scan                                                   |
-| `--top-ports <number>`           | Scan the most common ports                                              |
-| `-F`                             | Fast scan                                                               |
-| `-Pn`                            | Treat all hosts as online, skip host discovery                          |
-| `-PS <portlist>`                 | TCP SYN discovery on specified ports                                    |
 | `-PA <portlist>`                 | TCP ACK discovery on specified ports                                    |
-| `-PU <portlist>`                 | UDP discovery on specified ports                                        |
+| `-p <port ranges>`               | Specify ports to scan                                                   |
+| `-Pn`                            | Treat all hosts as online, skip host discovery                          |
 | `-PR`                            | ARP discovery                                                           |
-| `-sV`                            | Version detection                                                       |
-| `--version-intensity <level>`    | Set version detection intensity level (0-9)                             |
-| `--version-light`                | Light version scan                                                      |
-| `--version-all`                  | Aggressive version scan                                                 |
-| `-O`                             | Enable OS detection                                                     |
-| `--osscan-limit`                 | Limit OS detection to promising targets                                 |
-| `--osscan-guess`                 | Guess OS aggressively                                                   |
+| `-PS <portlist>`                 | TCP SYN discovery on specified ports                                    |
+| `-PU <portlist>`                 | UDP discovery on specified ports                                        |
+| `-sA`                            | ACK scan                                                                |
 | `-sC`                            | Run default NSE scripts                                                 |
+| `-sF`                            | FIN scan                                                                |
+| `-sM`                            | Maimon scan                                                             |
+| `-sN`                            | NULL scan                                                               |
+| `-sP` / `-sn`                    | Ping scan                                                               |
+| `-sS`                            | SYN scan                                                                |
+| `-sT`                            | TCP connect scan                                                        |
+| `-sU`                            | UDP scan                                                                |
+| `-sV`                            | Version detection                                                       |
+| `-sW`                            | Window scan                                                             |
+| `-T<0-5>`                        | Set timing template (0: slowest, 5: fastest)                            |
+| `-v` / `-vv`                     | Increase verbosity / Very verbose output                                |
+| `--append-output`                | Append to output files                                                  |
+| `--data-length <number>`         | Append random data to packets                                           |
+| `--iflist`                       | List network interfaces and routes                                      |
+| `--ip-options <options>`         | Send packets with specified IP options                                  |
+| `--max-parallelism <number>`     | Maximum number of parallel probes                                       |
+| `--max-rate <number>`            | Maximum packet send rate                                                |
+| `--max-retries <number>`         | Maximum number of retries                                               |
+| `--max-rtt-timeout <time>`       | Maximum round trip time timeout                                         |
+| `--min-parallelism <number>`     | Minimum number of parallel probes                                       |
+| `--min-rate <number>`            | Minimum packet send rate                                                |
+| `--min-rtt-timeout <time>`       | Minimum round trip time timeout                                         |
+| `--open`                         | Show only open ports                                                    |
+| `--osscan-guess`                 | Guess OS aggressively                                                   |
+| `--osscan-limit`                 | Limit OS detection to promising targets                                 |
+| `--packet-trace`                 | Show all packets sent/received                                          |
+| `--reason`                       | Display reason for port state                                           |
+| `--resume <filename>`            | Resume an aborted scan                                                  |
 | `--script=<scripts>`             | Specify NSE scripts to run                                              |
 | `--script-args=<args>`           | Provide arguments to scripts                                            |
 | `--script-trace`                 | Show data sent/received during script execution                         |
-| `-T<0-5>`                        | Set timing template (0: slowest, 5: fastest)                            |
-| `--min-rate <number>`            | Minimum packet send rate                                                |
-| `--max-rate <number>`            | Maximum packet send rate                                                |
-| `--min-parallelism <number>`     | Minimum number of parallel probes                                       |
-| `--max-parallelism <number>`     | Maximum number of parallel probes                                       |
-| `--min-rtt-timeout <time>`       | Minimum round trip time timeout                                         |
-| `--max-rtt-timeout <time>`       | Maximum round trip time timeout                                         |
-| `--max-retries <number>`         | Maximum number of retries                                               |
-| `-f`                             | Fragment packets                                                        |
-| `-D <decoy1,decoy2,...>`         | Use decoys                                                              |
-| `-S <IP_Address>`                | Spoof source address                                                    |
-| `-e <iface>`                     | Use specified interface                                                 |
-| `-g <port>` / `--source-port <port>` | Use specified source port                                              |
-| `--data-length <number>`         | Append random data to packets                                           |
-| `--ip-options <options>`         | Send packets with specified IP options                                  |
-| `-6`                             | Enable IPv6 scanning                                                    |
-| `--reason`                       | Display reason for port state                                           |
-| `--open`                         | Show only open ports                                                    |
-| `--packet-trace`                 | Show all packets sent/received                                          |
-| `--iflist`                       | List network interfaces and routes                                      |
-| `--append-output`                | Append to output files                                                  |
-| `--resume <filename>`            | Resume an aborted scan                                                  |
+| `--top-ports <number>`           | Scan the most common ports                                              |
+| `--traceroute`                   | Trace the path packets take to the target                               |
+| `--version-all`                  | Aggressive version scan                                                 |
+| `--version-intensity <level>`    | Set version detection intensity level (0-9)                             |
+| `--version-light`                | Light version scan                                                      |
