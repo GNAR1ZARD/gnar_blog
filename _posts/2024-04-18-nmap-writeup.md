@@ -48,6 +48,59 @@ In contrast, active scanning involves sending packets or requests to the network
 
 For thorough network reconnaissance, combining passive and active scanning techniques can be highly effective. Begin with passive scanning to observe the network without raising alarms, then follow up with active scanning for a deeper dive into the network's architecture and vulnerabilities. This phased approach helps in maintaining stealth while gradually escalating the intensity of the scan according to the sensitivity and security posture of the network.
 
+## Determining Network Range
+
+To determine the network range using an example IP address 172.22.17.130 and subnet mask 255.255.240.0, follow these steps:
+
+### Step 1: Convert Subnet Mask to CIDR Notation
+
+The subnet mask 255.255.240.0 can be converted to CIDR notation. This involves counting the number of 1s in the binary representation of the subnet mask:
+
+```
+255.255.240.0 in binary is:
+11111111.11111111.11110000.00000000
+```
+
+Counting the 1s gives us 20, so the CIDR notation is /20.
+
+### Step 2: Determine the Network Address
+
+To find the network address, perform a bitwise AND operation between the IP address and the subnet mask:
+
+```
+IP Address:        172.22.17.130 -> 10101100.00010110.00010001.10000010
+Subnet Mask:       255.255.240.0  -> 11111111.11111111.11110000.00000000
+Network Address:   172.22.16.0    -> 10101100.00010110.00010000.00000000
+```
+
+### Step 3: Determine the Broadcast Address
+
+The broadcast address can be found by setting all the host bits to 1 (the bits not covered by the subnet mask):
+
+```
+Network Address:   172.22.16.0    -> 10101100.00010110.00010000.00000000
+Host Bits to 1:    00000000.00000000.00001111.11111111
+Broadcast Address: 172.22.31.255  -> 10101100.00010110.00011111.11111111
+```
+
+### Step 4: Determine the Range of Usable IP Addresses
+
+The range of usable IP addresses is from one more than the network address to one less than the broadcast address:
+
+- **Network Address**: 172.22.16.0
+- **Usable Range**: 172.22.16.1 to 172.22.31.254
+- **Broadcast Address**: 172.22.31.255
+
+### Step 5: Use Nmap to Scan the Network
+
+Now that we have the network range, we can use Nmap to scan it:
+
+```bash
+nmap 172.22.16.0/20
+```
+
+This command will scan all IP addresses from 172.22.16.0 to 172.22.31.255 and list the active hosts. This approach is effective for discovering devices on the network without performing intrusive scans.
+
 ## Nmap Switches
 
 Nmap is a powerful network scanning tool that uses various switches (options) to customize its behavior. Below are some commonly used switches and their functionalities:
